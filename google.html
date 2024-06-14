@@ -1,0 +1,66 @@
+<!-- AIzaSyC5Xvt_DgMpYSMXN0z1IEP17e_Hvmyv_EA -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google-like Search</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<input type="text" id="searchInput" placeholder="Enter your search query">
+<button id="searchButton">Search</button>
+
+<div id="searchResults"></div>
+
+<script>
+$(document).ready(function(){
+  $('#searchButton').click(function(){
+    var query = $('#searchInput').val();
+    if(query !== ''){
+      search(query);
+    }
+  });
+});
+
+function search(query) {
+  var apiUrl = 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + query + '&format=json&origin=*';
+  
+  $.ajax({
+    url: apiUrl,
+    dataType: 'jsonp',
+    success: function(response){
+      displayResults(response.query.search);
+    },
+    error: function(xhr, status, error){
+      console.log('Error:', error);
+    }
+  });
+}
+
+function displayResults(results) {
+  var searchResults = $('#searchResults');
+  searchResults.empty();
+  
+  if(results.length > 0){
+    results.forEach(function(result){
+      var title = result.title;
+      var snippet = result.snippet;
+      var url = 'https://en.wikipedia.org/wiki/' + encodeURIComponent(title);
+      
+      var resultItem = '<div>';
+      resultItem += '<h3><a href="' + url + '" target="_blank">' + title + '</a></h3>';
+      resultItem += '<p>' + snippet + '</p>';
+      resultItem += '</div>';
+      
+      searchResults.append(resultItem);
+    });
+  } else {
+    searchResults.append('<p>No results found.</p>');
+  }
+}
+</script>
+
+</body>
+</html>

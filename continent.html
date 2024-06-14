@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Dropdown Example</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<select id="categorySelect">
+  <option value="">Select Category</option>
+  <option value="1">Category 1</option>
+  <option value="2">Category 2</option>
+  <option value="3">Category 3</option>
+</select>
+
+<select id="dataSelect">
+  <option value="">Select Data</option>
+</select>
+
+<script>
+$(document).ready(function(){
+  $('#categorySelect').change(function(){
+    populateData($(this).val());
+  });
+});
+
+function populateData(categoryID) {
+  var dataSelect = document.getElementById("dataSelect");
+  dataSelect.innerHTML = ""; // Clear existing options
+  
+  if(categoryID){
+    $.ajax({
+      type: 'GET',
+      url: 'data.json', // Change this URL to your JSON file or API endpoint
+      dataType: 'json',
+      success: function(data){
+        var options = data[categoryID];
+        options.forEach(function(option) {
+          var optionElement = document.createElement("option");
+          optionElement.value = option;
+          optionElement.textContent = option;
+          dataSelect.appendChild(optionElement);
+        });
+      }
+    });
+  } else {
+    var defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = "Select Data";
+    dataSelect.appendChild(defaultOption);
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination of HTML table</title>
+</head>
+<style>
+  table {
+           border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+
+
+<body>
+    <table id="mytable">
+        <thead>
+            <tr>
+                <thead>
+                    <th>NAME</th>
+                    <th>CONTACT</th>
+                    <th>MAIL</th>
+                </thead>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>priya</td>
+                <td>566724949</td>
+                <td>priya@123gmail.com</td>
+            </tr>
+            <tr>
+                <td>sanjay</td>
+                <td>766724949</td>
+                <td>sanjay@123gmail.com</td>
+            </tr>
+            <tr>
+                <td>surya</td>
+                <td>982324949</td>
+                <td>srrya@23gmail.com</td>
+            </tr>
+            <tr>
+                <td>riya</td>
+                <td>566724949</td>
+                <td>riya@123gmail.com</td>
+            </tr>
+            <tr>
+                <td>isha</td>
+                <td>598724949</td>
+                <td>isha@123gmail.com</td>
+            </tr>
+            <tr>
+                <td>vishnupriya</td>
+                <td>988724949</td>
+                <td>vishnupriya@123gmail.com</td>
+            </tr>
+            <tr>
+                <td>maithali</td>
+                <td>988855660</td>
+                <td>maithil@20gmail.com</td>
+            </tr>
+            <tr>
+                <td>jiya</td>
+                <td>987524949</td>
+                <td>jiya@123gmail.com</td>
+            </tr>
+            <tr>
+                <td>raghav</td>
+                <td>98885522598</td>
+                <td>raghav@20gmail.com</td>
+            </tr>
+            <tr>
+                <td>madhav</td>
+                <td>9888776659</td>
+                <td>madhav@104gmail.com</td>
+            </tr>
+            <tr>
+                <td>radhika</td>
+                <td>8907654430</td>
+                <td>radhika@108gmail.com</td>
+            </tr>
+            <tr>
+                <td>siya</td>
+                <td>987524949</td>
+                <td>siyaram@8gmail.com</td>
+            </tr>
+
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded",function(){
+            const table=document.getElementById('mytable')
+            const rowsperpage=3
+            const rows=table.getElementsByTagName('tbody')[0].getElementsByTagName('tr')
+            const numpages=Math.ceil(rows.length/rowsperpage)
+    
+            function showPage(page) {
+                let start = (page - 1) * rowsperpage;
+                let end = start + rowsperpage;
+                for (let i = 0; i < rows.length; i++) {
+                    rows[i].style.display = (i >= start && i < end) ? '' : 'none';
+                }
+            }
+    
+            function createPaginationButtons() {
+                const pagination = document.getElementById('pagination');
+                for (let i = 1; i <= numpages; i++) {
+                    let button = document.createElement('button');
+                    button.textContent = i;
+                    button.addEventListener('click', function() {
+                        showPage(i);
+                    });
+                    pagination.appendChild(button);
+                }
+            }
+    
+            createPaginationButtons();
+            showPage(1); // Show the first page by default
+        });
+    
+    
+    </script>
+    
+</body>
+
+
+</html>

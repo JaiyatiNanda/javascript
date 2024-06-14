@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEARCH IMAGE</title>
+</head>
+<style>
+    .search {
+        text-align: center;
+    }
+
+    .search input {
+        height: 40px;
+        width: 200px;
+    }
+
+    .conatiner {
+        display: flex;
+        justify-content: right;
+    }
+
+    .container img {
+        width: 400px;
+        height: 400px;
+    }
+</style>
+
+<body>
+    <div class="search">
+        <h1>SEARCH THE FLOWER</h1>
+        <input type="text" id="myInput" placeholder="search..">
+        <br><br>
+    </div>
+    <div class="container">
+        <img src="https://images.pexels.com/photos/56866/garden-rose-red-pink-56866.jpeg" alt="rose flower">
+        <img src="https://images.pexels.com/photos/46216/sunflower-flowers-bright-yellow-46216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="sunflower">
+        <img src="https://images.pexels.com/photos/67857/daisy-flower-spring-marguerite-67857.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="daisy flower">
+        <img src="https://images.pexels.com/photos/2058498/pexels-photo-2058498.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="tulip flower">
+        <img src="https://images.pexels.com/photos/55748/flower-blossom-bloom-blue-55748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="purple cranesbill flower">
+        <img src="https://images.pexels.com/photos/46231/water-lilies-pink-water-lake-46231.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="lotus">
+
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        let images = document.getElementsByClassName("container")[0].getElementsByTagName('img');
+        $("#myInput").on("keyup",function(){
+            let search = $(this).val().toLowerCase();
+            for(var i = 0; i < images.length; i++){
+                let searchval = images[i].getAttribute('alt').toLowerCase();
+                if(searchval.indexOf(search) >= 0){
+                    images[i].style.display = "";
+                }else{
+                    images[i].style.display = "none";
+                }
+            }
+        });
+    });
+</script>
+</html>

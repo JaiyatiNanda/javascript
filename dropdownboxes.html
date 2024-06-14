@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="selection">
+        <select name="select1" id="select" onchange="dropdown(this)">
+            <option value="option1">option1</option>
+            <option value="option2">option2</option>
+            <option value="option3">option3</option>
+            <option value="option4">option4</option>
+            <option value="option5">option5</option>
+            <option value="option6">option6</option>
+            <option value="option7">option7</option>
+            <option value="option8">option8</option>
+            <option value="option9">option9</option>
+            <option value="option10">option10</option>
+        </select>
+        <select name="select2" id="select" onchange="dropdown(this)">
+            <option value="option1">option1</option>
+            <option value="option2">option2</option>
+            <option value="option3">option3</option>
+            <option value="option4">option4</option>
+            <option value="option5">option5</option>
+            <option value="option6">option6</option>
+            <option value="option7">option7</option>
+            <option value="option8">option8</option>
+            <option value="option9">option9</option>
+            <option value="option10">option10</option>
+        </select>
+        <select name="select3" id="select" onchange="dropdown(this)">
+            <option value="option1">option1</option>
+            <option value="option2">option2</option>
+            <option value="option3">option3</option>
+            <option value="option4">option4</option>
+            <option value="option5">option5</option>
+            <option value="option6">option6</option>
+            <option value="option7">option7</option>
+            <option value="option8">option8</option>
+            <option value="option9">option9</option>
+            <option value="option10">option10</option>
+        </select>
+        <select name="select4" id="select" onchange="dropdown(this)">
+            <option value="option1">option1</option>
+            <option value="option2">option2</option>
+            <option value="option3">option3</option>
+            <option value="option4">option4</option>
+            <option value="option5">option5</option>
+            <option value="option6">option6</option>
+            <option value="option7">option7</option>
+            <option value="option8">option8</option>
+            <option value="option9">option9</option>
+            <option value="option10">option10</option>
+        </select>
+        <select name="select5" id="select" onchange="dropdown(this)">
+            <option value="option1">option1</option>
+            <option value="option2">option2</option>
+            <option value="option3">option3</option>
+            <option value="option4">option4</option>
+            <option value="option5">option5</option>
+            <option value="option6">option6</option>
+            <option value="option7">option7</option>
+            <option value="option8">option8</option>
+            <option value="option9">option9</option>
+            <option value="option10">option10</option>
+        </select>
+        <select name="select6" id="select" onchange="dropdown(this)">
+            <option value="option1">option1</option>
+            <option value="option2">option2</option>
+            <option value="option3">option3</option>
+            <option value="option4">option4</option>
+            <option value="option5">option5</option>
+            <option value="option6">option6</option>
+            <option value="option7">option7</option>
+            <option value="option8">option8</option>
+            <option value="option9">option9</option>
+            <option value="option10">option10</option>
+        </select>
+        <select name="select7" id="select" onchange="dropdown(this)">
+            <option value="option1">option1</option>
+            <option value="option2">option2</option>
+            <option value="option3">option3</option>
+            <option value="option4">option4</option>
+            <option value="option5">option5</option>
+            <option value="option6">option6</option>
+            <option value="option7">option7</option>
+            <option value="option8">option8</option>
+            <option value="option9">option9</option>
+            <option value="option10">option10</option>
+        </select>
+        <select name="select8" id="select" onchange="dropdown(this)">
+            <option value="option1">option1</option>
+            <option value="option2">option2</option>
+            <option value="option3">option3</option>
+            <option value="option4">option4</option>
+            <option value="option5">option5</option>
+            <option value="option6">option6</option>
+            <option value="option7">option7</option>
+            <option value="option8">option8</option>
+            <option value="option9">option9</option>
+            <option value="option10">option10</option>
+        </select>
+        <select name="select9" id="select" onchange="dropdown(this)">
+            <option value="option1">option1</option>
+            <option value="option2">option2</option>
+            <option value="option3">option3</option>
+            <option value="option4">option4</option>
+            <option value="option5">option5</option>
+            <option value="option6">option6</option>
+            <option value="option7">option7</option>
+            <option value="option8">option8</option>
+            <option value="option9">option9</option>
+            <option value="option10">option10</option>
+        </select>
+        <select name="select10" id="select" onchange="dropdown(this)">
+            <option value="option1">option1</option>
+            <option value="option2">option2</option>
+            <option value="option3">option3</option>
+            <option value="option4">option4</option>
+            <option value="option5">option5</option>
+            <option value="option6">option6</option>
+            <option value="option7">option7</option>
+            <option value="option8">option8</option>
+            <option value="option9">option9</option>
+            <option value="option10">option10</option>
+        </select>
+     
+    </div>
+</body>
+<script>
+   function dropdown(select){
+    let selectedvalue = select.value;
+    let dropd = document.querySelectorAll('#select');
+
+    for (let i = 0; i < dropd.length; i++) {
+        let drop = dropd[i];
+        if (drop != select) {
+            let optiontoremove = drop.querySelector('option[value="' + selectedvalue + '"]');
+            if (optiontoremove) {
+                drop.removeChild(optiontoremove);
+            }
+            let prevselectedval = drop.dataset.prevselectedval;
+            if (prevselectedval) {
+                let prevoption = document.createElement('option');
+                prevoption.value = prevselectedval;
+                prevoption.text = 'option' + prevselectedval;
+                drop.appendChild(prevoption);
+            }
+        }
+    }
+}
+
+</script>
+</html>
